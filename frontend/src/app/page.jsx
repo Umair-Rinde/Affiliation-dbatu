@@ -11,6 +11,9 @@ const Home = () => {
       <Header />
       <div className="flex w-full">
         <SideNavbar current="Home" />
+        <page>
+          
+        </page>
       </div>
       <Footer />
     </main>
