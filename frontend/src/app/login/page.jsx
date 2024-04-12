@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import Link from "next/link";
+import NavTitle from "../components/common/NavTitle";
 
 const LoginPage = () => {
 
@@ -17,12 +18,10 @@ const LoginPage = () => {
 
     return (
         <main className="flex flex-col w-screen min-h-screen">
-            <header className="w-full text-lg font-semibold py-3 px-5 border-[#00000080] border-b-2 bg-[#EEEEEE]">
-                Login Page
-            </header>
-            <section className="bg-[#EEEEEE1A] shadow-lg rounded-xl flex flex-col px-20 py-10 gap-7 items-center my-auto mx-auto">
+            <NavTitle pageTitle="Login Page" />
+            <section className="bg-[#EEEEEE1A] shadow-lg rounded-xl flex flex-col px-16 py-7 gap-7 items-center my-auto mx-auto">
                 <h2 className="text-2xl font-bold">Login</h2>
-                <span className="text-gray-600">Enter your username & password</span>
+                <span className="text-gray-600 text-sm">Enter your username & password</span>
                 <div className="flex items-center gap-2">
                     {options.map((optn) => {
                         return (
@@ -35,7 +34,7 @@ const LoginPage = () => {
                         </span>);
                     })}
                 </div>
-                <div className="flex flex-col w-full gap-3 my-5">
+                <div className="flex flex-col w-full gap-3 my-3">
                     <input
                         className="w-full rounded-lg border outline-none py-2 px-4"
                         placeholder="Username"
@@ -54,7 +53,7 @@ const LoginPage = () => {
                 >
                     Submit
                 </button>
-                <div className="w-5/6 flex items-center gap-1 justify-center my-5">
+                <div className="w-5/6 flex items-center gap-1 justify-center my-3">
                     <span className="w-40 bg-gray-300 h-0.5 rounded-full"></span>
                     <Link href="#" className="w-full text-center text-sm text-gray-400">Forgot password?</Link>
                     <span className="w-40 bg-gray-300 rounded-full h-0.5"></span>
