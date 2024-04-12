@@ -25,3 +25,19 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+table {
+  @apply border-[0.5px] border-gray-400;
+}
+
+table th {
+  @apply text-center;
+}
+
+table th, table td {
+  @apply px-3 py-2 border-gray-400 border-[0.3px];
+}
+
+table th {
+  @apply bg-blue-200;
+}
