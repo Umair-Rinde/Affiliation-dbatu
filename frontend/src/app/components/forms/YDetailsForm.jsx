@@ -143,4 +143,4 @@ const HoiForm = () => {
   );
 };
 
-export default HoiForm;
+export default YDetailsForm;
