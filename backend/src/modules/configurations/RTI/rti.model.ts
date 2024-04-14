@@ -1,9 +1,9 @@
 import { Column, DataType, Default, IsUUID, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'head-of-institution',
+  tableName: 'rti',
 })
-export class HeadOfInstitution extends Model {
+export class RTI extends Model {
   @IsUUID(4)
   @Default(DataType.UUIDV4)
   @PrimaryKey
@@ -23,26 +23,14 @@ export class HeadOfInstitution extends Model {
   designation: string;
 
   @Column
-  highestDegree: string;
+  totalExperience: string;
 
   @Column
-  specialization: string;
-
-  @Column
-  dateOfBirth: string;
+  qualification: string;
 
   @Column
   phoneNumber: string;
 
   @Column
-  approvedByUniversity: boolean;
-
-  @Column
   email: string;
-
-  @Column
-  nameOfUniversity: string;
-
-  @Column
-  letterOfApproval: boolean;
 }
