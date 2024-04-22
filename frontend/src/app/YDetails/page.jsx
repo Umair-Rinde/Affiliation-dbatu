@@ -17,7 +17,7 @@ const YDetailsPage = () => {
             routes={[
                 {title:"Institute Login",path:"/login"},
                 {title:"Home", path:"/"},
-                {title:"Your Details", path:"/YDetails"},
+                {title:"Your Details", path:"/yourdetails"},
             ]} 
         />
           <section className="w-full h-full px-2 py-10">
