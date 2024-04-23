@@ -4,23 +4,6 @@ import InputField from "@/app/components/common/InputField";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 const FacilitiesFormOne = () => {
-    const [firstName, setFirstName] = useState('');
-    const [middleName, setMiddleName] = useState('');
-    const [lastName, setLastName] = useState('');
-
-    const [designation, setDesignation] = useState('');
-    const [experience, setExperience] = useState('');
-    const [highestDegree, setHighestDegree] = useState('');
-
-    const [specification, setSpecification] = useState('');
-    const [totalExperience, setTotalExperience] = useState('');
-    const [dob, setDob] = useState('');
-
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-
-    const [isApproved, setIsApproved] = useState(null);
-    const [university, setUniversity] = useState('');
 
     // Library Details
     const [libraryBooks, setLibraryBooks] = useState([]);
@@ -31,9 +14,15 @@ const FacilitiesFormOne = () => {
     const [international, setInternational] = useState('');
     const [national, setNational] = useState('');
 
-    function onSubmitHandler(e) {
+    function addLibraryDetails(e) {
+        // Logic to add these to libraryDetails rows
+        setLibNameOfCourse('');
+        setNoOfTitles('');
+        setNoOfVolumes('');
+        setNoOfJournals('');
+        setInternational('');
+        setNational('');
         e.preventDefault();
-        // Logic to handle submit
     }
 
     function addLibraryDetails(e) {
@@ -45,6 +34,11 @@ const FacilitiesFormOne = () => {
         setInternational('');
         setNational('');
         e.preventDefault();
+    }
+
+    function onSubmitHandler(e) {
+        e.preventDefault();
+        // Logic to handle submit
     }
 
     return (
@@ -93,7 +87,7 @@ const FacilitiesFormOne = () => {
                 </div>
                 <AddAnotherFieldBtn onClick={addLibraryDetails}/>
             </section>
-            <div className="w-full flex gap-4 justify-between">
+            {/* <div className="w-full flex gap-4 justify-between">
                 <span className="flex flex-col gap-2 w-full">
                     <label className="text-sm font-semibold">Approved by the University</label>
                     <span
@@ -126,7 +120,7 @@ const FacilitiesFormOne = () => {
                         <button className="bg-gray-200 p-1 rounded">view</button>
                     </span>
                 </span>
-            </div>
+            </div> */}
             <div className="flex items-center justify-center gap-3 my-5 font-semibold">
                 <button className="px-4 py-1 bg-gray-200 hover:bg-gray-400 rounded-lg">Previous</button>
                 <button className="px-4 py-1 bg-blue-600 hover:bg-blue-800 text-white rounded-lg"
