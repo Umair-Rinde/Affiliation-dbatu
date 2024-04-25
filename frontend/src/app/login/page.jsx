@@ -18,7 +18,7 @@ const LoginPage = () => {
 
     return (
         <main className="flex flex-col w-screen min-h-screen">
-            <NavTitle pageTitle="Login Page" />
+            {/*<NavTitle pageTitle="Login Page" />*/}
             <section className="bg-[#EEEEEE1A] shadow-lg rounded-xl flex flex-col px-16 py-7 gap-7 items-center my-auto mx-auto">
                 <h2 className="text-2xl font-bold">Login</h2>
                 <span className="text-gray-600 text-sm">Enter your username & password</span>
