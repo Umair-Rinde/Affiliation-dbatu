@@ -22,7 +22,7 @@ const FacilitiesPage = () => {
         />
           <section className="w-full h-full px-2 py-10">
             <div className="w-full h-full flex-col gap-3 p-3 border border-blue-500">
-              <h2 className="font-semibold text-2xl mx-1 w-full border-b pb-2">Head of Institution (Director/Principle)</h2>
+              <h2 className="font-semibold text-2xl mx-1 w-full border-b pb-2">Facilities</h2>
               <DividerX />
               <FacilitiesForm />
             </div>
