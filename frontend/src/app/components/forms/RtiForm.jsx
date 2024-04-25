@@ -1,6 +1,9 @@
 'use client';
 import { useState } from "react";
-import InputField from "../common/InputField";
+import InputField from "@/app/components/common/InputField";
+
+
+const BASE_API_URL = 'http://192.168.207.77:5000/api/v1';
 
 const RtiForm = () => {
     const [firstName, setFirstName] = useState('');
@@ -14,9 +17,34 @@ const RtiForm = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
-    function onSubmitHandler(e) {
+    async function onSubmitHandler(e) {
         e.preventDefault();
         // Logic to handle submit
+        if(!firstName || !middleName || !lastName || !designation || !totalExperience || !qualification || !phone || !email){
+            alert("Incomplete details");
+            return;
+        }
+
+        const body = {
+            firstName,
+            middleName,
+            lastName,
+            designation,
+            totalExperience,
+            qualification,
+            phone: phoneNumber,
+            email
+        };
+
+        // api call
+        let res = await fetch(BASE_API_URL+"/configurations/rti", {
+            method: 'POST',
+            headers: {'Content-Type': 'json/application'},
+            body: JSON.stringify(body),
+        });
+
+        res = await res.json();
+        console.log(res);
     }
 
     return (
