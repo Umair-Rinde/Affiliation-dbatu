@@ -25,7 +25,7 @@ const TstaffForm = () => {
     const [dor, setDor] = useState('');
 
     function addTeachingStaffDetails(e) {
-        // Logic to add these to libraryDetails rows
+        // Logic to add these to teaching staff rows
         setBranch('');
         setShift('');
         setFirst('');
@@ -56,11 +56,21 @@ const TstaffForm = () => {
                         value={branch}
                         setValue={setBranch}
                     />
-                    <InputField 
-                        label="Shift Number"
-                        value={shift}
-                        setValue={setShift}
-                    />
+                    <span className="flex flex-col gap-2 w-full">
+                        <label className="text-sm font-semibold">Shift Number</label>
+                        <span className="px-2 py-1 flex gap-2 items-center">
+                            <input 
+                                type="radio" name="shift"
+                                onClick={(e) => setShift(true)}
+                            /> 
+                            <label className="mr-2">First Shift</label>
+                            <input
+                                type="radio" name="shift"
+                                onClick={(e) => setShift(false)}
+                            /> 
+                            <label>Second Shift</label>
+                        </span>
+                    </span>
                     <dummy className="w-full"></dummy>
                 </div>
 
@@ -180,12 +190,17 @@ const TstaffForm = () => {
                     />
                     <dummy className="w-full"></dummy>
                 </div>
-                <AddAnotherFieldBtn onClick={addTeachingStaffDetails}/>           
+
+            <div>
+                <span className="flex items-left"><AddAnotherFieldBtn onClick={addTeachingStaffDetails}/></span>
+            </div>
+
             <div className="flex items-center justify-center gap-3 my-5 font-semibold">
                 <button className="px-4 py-1 bg-gray-200 hover:bg-gray-400 rounded-lg">Previous</button>
                 <button className="px-4 py-1 bg-blue-600 hover:bg-blue-800 text-white rounded-lg"
                     onClick={onSubmitHandler}
                 >Submit</button>
+                <button className="px-4 py-1 bg-blue-200 hover:bg-gray-400 rounded-lg">Save</button>
                 <button className="px-4 py-1 bg-gray-200 hover:bg-gray-400 rounded-lg">Next</button>
             </div>
         </form>
@@ -193,11 +208,10 @@ const TstaffForm = () => {
 }
 
 const AddAnotherFieldBtn = ({onClick}) => (
-    <button className="flex gap-2 items-center self-end text-sm px-4 py-1"
+    <button className="px-4 py-1 bg-blue-200 hover:bg-gray-400 rounded-lg"
         onClick={onClick}
     >
-        <IoAddCircleOutline className="text-lg"/>
-        <span>Add another field</span>
+        <span>Add Another Field</span>
     </button>
 )
 
