@@ -196,12 +196,10 @@ const TstaffForm = () => {
             </div>
 
             <div className="flex items-center justify-center gap-3 my-5 font-semibold">
-                <button className="px-4 py-1 bg-gray-200 hover:bg-gray-400 rounded-lg">Previous</button>
                 <button className="px-4 py-1 bg-blue-600 hover:bg-blue-800 text-white rounded-lg"
                     onClick={onSubmitHandler}
                 >Submit</button>
                 <button className="px-4 py-1 bg-blue-200 hover:bg-gray-400 rounded-lg">Save</button>
-                <button className="px-4 py-1 bg-gray-200 hover:bg-gray-400 rounded-lg">Next</button>
             </div>
         </form>
     )
