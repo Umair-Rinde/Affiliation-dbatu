@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class RTIDto {
 
@@ -26,7 +26,7 @@ export class RTIDto {
   qualification: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   phoneNumber: string;
 
   @IsEmail()

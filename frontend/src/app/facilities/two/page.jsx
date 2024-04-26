@@ -18,6 +18,7 @@ const FacilitiesPageTwo = () => {
                 {title:"Institute Login",path:"/login"},
                 {title:"Home", path:"/"},
                 {title:"Facilities", path:"/facilities"},
+                {title:"Part 2", path:"/facilities/two"}
             ]} 
         />
           <section className="w-full h-full px-2 py-10">

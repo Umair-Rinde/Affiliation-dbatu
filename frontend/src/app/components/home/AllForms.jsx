@@ -6,6 +6,7 @@ const AllForms = () => {
         {name: 'Your Details', description: '-', completed: true, path: '/yourdetails'},
         {name: 'University/Institute', description: '-', completed: true, path: '/uni'},
         {name: 'Head of Institution', description: '-', completed: true, path: '/hoi'},
+        {name: 'Teaching Staff', description: '-', completed: true, path: '/tstaff'},
         {name: 'Affiliation', description: '-', completed: true, path: '/affiliation'},
         {name: 'RTI & Appellant', description: '-', completed: true, path: '/rti'},
         {name: 'Non-teaching staff', description: '-', completed: true, path: '/ntstaff'},
