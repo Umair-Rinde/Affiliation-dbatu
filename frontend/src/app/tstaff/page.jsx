@@ -1,14 +1,12 @@
 import Footer from "@/app/components/common/Footer";
 import Header from "@/app/components/common/Header";
 import NavRoute from "@/app/components/common/NavRoute";
-import NavTitle from "@/app/components/common/NavTitle";
 import SideNavbar from "@/app/components/common/SideNavbar";
 import TstaffForm from "../components/forms/tstaff";
 
 const TstaffPage = () => {
   return (
     <main className="flex w-screen min-h-screen flex-col items-center">
-      {/* <NavTitle pageTitle="Home" /> */}
       <Header />
       <div className="flex w-full py-2">
         <SideNavbar current="Home" />

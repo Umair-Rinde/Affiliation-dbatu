@@ -38,13 +38,17 @@ const LoginPage = () => {
             headers: { 'Content-Type': 'application/json'}
         });
 
+        // remove true when api successfully connected
         if(true || res.success){
             alert("logined successfully");
             // saveloginData()
             // push to faculty
-            router.push('/');
+            router.push('/tstaff');
         }else{
-            // alert(res.message)
+            // remove push after successfull implementation of api
+            router.push('/');
+            // Instead show login failed message 
+            // alert("res.errorMessage")
         }
     }
 

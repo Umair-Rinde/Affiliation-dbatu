@@ -12,7 +12,7 @@ const NtStafform = () => {
 
     const [designation, setDesignation] = useState('');
     const [qualification, setQualification] = useState('');
-    const [doj, setDOJ] = useState('');
+    const [doj, setDoj] = useState('');
 
     const [branchtwo, setBranchtwo] = useState('');
 
@@ -90,7 +90,7 @@ const NtStafform = () => {
                 <InputField 
                     label="Date of Joining"
                     value={doj}
-                    setValue={setDOJ}
+                    setValue={setDoj}
                     type="date"
                 />
             </div>
