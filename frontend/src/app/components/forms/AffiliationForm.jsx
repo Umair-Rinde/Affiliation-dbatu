@@ -266,8 +266,8 @@ const AffiliationForm = () => {
       <div className="w-full flex items-center gap-4 justify-between">
         <span className="flex flex-col gap-2 w-full">
           <label className="text-sm font-semibold">
-            Local Managing Commitee Constituted
-            <br>(as per Maharashtra university act 1994)</br>
+            Local Managing Commitee Constituted (as per Maharashtra university
+            act 1994)
           </label>
           <span className="px-2 py-1 flex gap-2 items-center">
             <input
