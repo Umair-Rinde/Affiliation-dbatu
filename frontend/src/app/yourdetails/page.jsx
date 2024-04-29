@@ -22,7 +22,7 @@ const YDetailsPage = () => {
           />
             <section className="w-full h-full px-2 py-10">
               <div className="w-full h-full flex-col gap-3 p-3 border border-blue-500">
-                <h2 className="font-semibold text-2xl mx-1 w-full border-b pb-2">Your Details</h2>
+                <h2 className="font-semibold text-2xl mx-1 w-full border-b pb-2">Co-ordinator Details</h2>
                 <DividerX />
                 <YDetailsForm />
               </div>
