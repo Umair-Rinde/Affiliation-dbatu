@@ -27,17 +27,13 @@
 }
 
 table {
-  @apply border-[0.5px] border-gray-400;
+  @apply border-[0.5px] border-gray-400 text-sm;
 }
 
 table th {
-  @apply text-center;
+  @apply text-center bg-blue-200;
 }
 
 table th, table td {
-  @apply px-3 py-2 border-gray-400 border-[0.3px];
-}
-
-table th {
-  @apply bg-blue-200;
+  @apply px-3 py-2 border-gray-400 border-[0.3px] text-center;
 }
