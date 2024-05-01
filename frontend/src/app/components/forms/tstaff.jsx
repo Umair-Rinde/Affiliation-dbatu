@@ -93,7 +93,7 @@ const TstaffForm = () => {
 
     return (
         <form className="flex flex-col gap-5 w-full relative">
-            {popup && <StaffDataPopup staff={staffs[idx]} />}
+            {popup && <StaffDataPopup staff={staffs[idx]} setPopup={setPopup}/>}
             {staffs.length > 0 && (
                 <table>
                     <tr>
@@ -289,10 +289,18 @@ const AddAnotherFieldBtn = ({onClick}) => (
     </button>
 )
 
-const StaffDataPopup = ({staff}) => {
+const StaffDataPopup = ({staff, setPopup}) => {
+    function closePopup(e){
+        e.preventDefault();
+        setPopup(false);
+    }
     return (
         <div className="fixed w-screen h-screen flex items-center justify-center top-0 left-0 z-10 bg-[#0000005d]">
-            <table className="bg-white rounded-xl">
+            <container className="flex flex-col gap-2 items-end bg-white p-2 rounded-xl">
+            <button onClick={closePopup}
+                className="text-sm bg-red-500 hover:bg-red-400 px-2 py-1 font-semibold rounded text-white "
+            >close x</button>
+            <table className="bg-white">
                 <tr>
                     <td>First Name</td>
                     <td>{staff.firstName}</td>
@@ -350,6 +358,7 @@ const StaffDataPopup = ({staff}) => {
                     <td>{staff.dateOnRecognition}</td>
                 </tr>
             </table>
+            </container>
         </div>
     )
 }
