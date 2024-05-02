@@ -1,7 +1,6 @@
 'use client';
-import { useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import InputField from "@/app/components/common/InputField";
-import { IoAddCircleOutline } from "react-icons/io5";
 import SelectField from "../common/SelectField";
 
 const BASE_API_URL = 'http://192.168.207.77:5000/api/v1';
@@ -28,14 +27,25 @@ const TstaffForm = () => {
     const [approvalNo, setApprovalno] = useState('');
     const [doa, setDoa] = useState('');
 
-    const [cas, setCas] = useState('');
+    const [cas, setCas] = useState(null);
 
-    const [isApproved, setIsApproved] = useState('');
+    const [isApproved, setIsApproved] = useState(null);
 
     const [otherUni, setOtherUni] = useState(null);
-    const [isApprovedFrom, setApprovedFrom] = useState(null);
+    const [isApprovedFrom, setApprovedFrom] = useState('');
 
     const [experience, setExperience] = useState('');
+
+    const [uid, setUid] = useState('');
+    
+    useEffect(() => {
+        let universityId = localStorage.getItem('uid');
+        if(universityId){
+            setUid(universityId);
+        }else{
+            setUid("NA");
+        }
+    })
 
     function reset(){
         setFirst('');
@@ -53,8 +63,8 @@ const TstaffForm = () => {
         setApprovalno('');
         setDoa('');
         setCas('');
-        setOtherUni('');
-        setApprovedFrom('');
+        setOtherUni(null);
+        setApprovedFrom(null);
         setExperience('');
     }
 
@@ -76,7 +86,7 @@ const TstaffForm = () => {
             ApprovedbyCAS: cas,
             dateOfApproval: doa,
             fromOtherUniversity: otherUni,
-            dateofApprovalofPrevious: isApprovedFrom,
+            dateofApprovalOfPrevious: isApprovedFrom,
             experience
         };
 
@@ -93,9 +103,30 @@ const TstaffForm = () => {
     }
 
     function isValidData(){
-        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas && isApproved!=null && otherUni!=null && experience)){
-            alert("Please fill complete staff data");
-
+        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas!=null && otherUni!=null && experience!=null)){
+            let str = "";
+            if(!(first && middle && last))
+                str = "Please enter complete name";
+            else if(!department) str = "Please enter department";
+            else if(!designation) str = "Please enter designatiion";
+            else if(!specialization) str = "Please enter specialization";
+            else if(!qualification) str = "Please select highest qualification";
+            else if(!doq) str = "Please enter date of acquiring higher qualification";
+            else if(!dob) str = "Please enter date of birth";
+            else if(!category) str = "Please select cast category";
+            else if(!typeOfAppoint) str = "Please select type of appointment";
+            else if(otherUni === null) str = "Please select if approval transferred from other university";
+            else if(cas===null) str = "Please select if current designaition is under CAS"
+            else if(!experience) str="Please enter experience";
+            alert(str);
+            return false;
+        }
+        if(typeOfAppoint.includes('University Approved') && !(approvalNo || doa)){
+            alert("Please fill complete approval details!");
+            return false;
+        }
+        if(otherUni && !isApprovedFrom){
+            alert("Please fill the date of approval from other university!");
             return false;
         }
         return true;
@@ -111,6 +142,7 @@ const TstaffForm = () => {
 
         const body = {
             staffs,
+            uid,
         };
         try {
                 // api call

@@ -42,7 +42,9 @@ const LoginPage = () => {
         if(true || res.success){
             alert("logined successfully");
             // saveloginData()
-            // push to faculty
+            // when connected to backend properly use, uid = res.uid;
+            localStorage.setItem('uid', '020202020');
+            // push to teaching staffs page
             router.push('/tstaff');
         }else{
             // remove push after successfull implementation of api
