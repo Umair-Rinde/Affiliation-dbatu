@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import NavTitle from "../components/common/NavTitle";
+import { BASE_API_URL } from "@/configs/api";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
 
@@ -11,9 +13,45 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const router = useRouter();
+
     async function handleSubmit(e) {
         e.preventDefault();
-        alert('Logined successfully!');
+        if(!username){
+            alert("Please enter username");
+            return;
+        }
+        if(!password){
+            alert("Please enter password");
+            return;
+        }
+
+        let requestBody = JSON.stringify({
+            username,
+            password,
+            loginOption: option,
+        });
+
+        let res = await fetch(BASE_API_URL+"/configurations/login", {
+            method: 'POST',
+            body: requestBody,
+            headers: { 'Content-Type': 'application/json'}
+        });
+
+        // remove true when api successfully connected
+        if(true || res.success){
+            alert("logined successfully");
+            // saveloginData()
+            // when connected to backend properly use, uid = res.uid;
+            localStorage.setItem('uid', '020202020');
+            // push to teaching staffs page
+            router.push('/tstaff');
+        }else{
+            // remove push after successfull implementation of api
+            router.push('/');
+            // Instead show login failed message 
+            // alert("res.errorMessage")
+        }
     }
 
     return (

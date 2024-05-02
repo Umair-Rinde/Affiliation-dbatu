@@ -1,5 +1,14 @@
 {
-  "dependencies": {
-    "nest": "^0.1.6"
-  }
+  "name": "affiliation-dbatu",
+  "version": "1.0.0",
+  "description": "Web application for collecting, managing and auditing the affiliated college information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

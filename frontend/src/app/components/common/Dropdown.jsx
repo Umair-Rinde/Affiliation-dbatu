@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai';
 import list from './list.json';
 
-function Dropdown() {
+function Dropdown({options, setOption, currentOption}) {
     const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className='relative flex flex-col items-center w-[340px] h-[340px] rounded-lg'>
-        <button onClick={() => setIsOpen((prev => !prev))} className='bg-blue-400 p-4 w-full flex items-center justify-between font-bold text-lg rounded-lg tracking-wider border-4 border-transparent active:border-white duration-300 active:text-white'>
+    <div className='flex flex-col gap-2 w-full'>
+        <button onClick={() => setIsOpen((prev => !prev))} className='bg-blue-400 px-2 py-1 outline-none border-2 rounded-lg'>
             Dropdown
             {!isOpen ? (
                 <AiOutlineCaretDown className='h-8'/>
