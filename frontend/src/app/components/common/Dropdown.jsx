@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai';
 import list from './list.json';
 
-function Dropdown() {
+function Dropdown({options, setOption, currentOption}) {
     const [isOpen, setIsOpen] = useState(false);
   return (
     <div className='flex flex-col gap-2 w-full'>

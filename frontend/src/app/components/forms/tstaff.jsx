@@ -2,46 +2,60 @@
 import { useState, useTransition } from "react";
 import InputField from "@/app/components/common/InputField";
 import { IoAddCircleOutline } from "react-icons/io5";
+import SelectField from "../common/SelectField";
+
+const BASE_API_URL = 'http://192.168.207.77:5000/api/v1';
 
 const TstaffForm = () => {
 
     const [staffs, setStaffs] = useState([]);
 
-    const [branch, setBranch] = useState('');
-    const [shift, setShift] = useState('');
-
     const [first, setFirst] = useState('');
     const [middle, setMiddle] = useState('');
     const [last, setLast] = useState('');
 
-    const [post, setPost] = useState('');
-    const [isAppointed, setIsAppointed] = useState(null);
-    const [doj, setDoj] = useState('');
+    const [department, setDepartment] = useState('');
+    const [designation, setDesignation] = useState('');
+    const [specialization, setSpecialization] = useState('');
 
-    const [typef, setTypef] = useState(null);
+    const [qualification, setQualification] = useState('');
+    const [doq, setDoq] = useState('');
 
-    const [isApproved, setIsApproved] = useState(null);
+    const [dob, setDob] = useState('');
+    const [category, setCategory] = useState(null);
+
+    const [typeOfAppoint, setTypeOfAppoint] = useState('');
     const [approvalNo, setApprovalno] = useState('');
     const [doa, setDoa] = useState('');
 
-    const [recognitionNo, setRecognitionNo] = useState('');
-    const [dor, setDor] = useState('');
+    const [cas, setCas] = useState('');
+
+    const [isApproved, setIsApproved] = useState('');
+
+    const [otherUni, setOtherUni] = useState(null);
+    const [isApprovedFrom, setApprovedFrom] = useState(null);
+
+    const [experience, setExperience] = useState('');
 
     function reset(){
-        setBranch('');
-        setShift('');
         setFirst('');
         setMiddle('');
         setLast('');
-        setPost('');
-        setIsAppointed(null);
-        setDoj('');
-        setTypef('');
+        setDepartment('');
+        setDesignation('');
+        setSpecialization('');
+        setQualification('');
+        setDoq('');
+        setDob('');
+        setCategory('');
+        setTypeOfAppoint('');
         setIsApproved(null);
         setApprovalno('');
         setDoa('');
-        setRecognitionNo('');
-        setDor('');
+        setCas('');
+        setOtherUni('');
+        setApprovedFrom('');
+        setExperience('');
     }
 
     function saveStaffData(){
@@ -49,17 +63,21 @@ const TstaffForm = () => {
             firstName: first,
             middleName: middle,
             lastName: last,
-            branch,
-            shiftNumber: shift,
-            post,
-            appointedFromReserved: isAppointed,
-            dateOfAppointment: doj,
-            typeOfFaculty: typef,
+            department,
+            designation,
+            specialization,
+            qualification,
+            dateOfQualification: doq,
+            dateOfBirth: dob,
+            category,
+            typeOfAppointment : typeOfAppoint,
             approvedByInstitute: isApproved,
             approvalNo,
-            dateOnApproval: doa,
-            recognitionNo,
-            dateOnRecognition: dor,
+            ApprovedbyCAS: cas,
+            dateOfApproval: doa,
+            fromOtherUniversity: otherUni,
+            dateofApprovalofPrevious: isApprovedFrom,
+            experience
         };
 
         setStaffs((prev) => [...prev, staffData]);
@@ -75,7 +93,7 @@ const TstaffForm = () => {
     }
 
     function isValidData(){
-        if(!(branch && shift && first && middle && last && post && isAppointed!=null && doj && typef && isApproved!=null && approvalNo && doa && recognitionNo && dor)){
+        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas && isApproved!=null && otherUni!=null && experience)){
             alert("Please fill complete staff data");
 
             return false;
@@ -83,9 +101,32 @@ const TstaffForm = () => {
         return true;
     }
 
-    function onSubmitHandler(e) {
+    async function onSubmitHandler(e) {
         e.preventDefault();
-        // Logic to handle submit
+        if(staffs.length === 0){
+            alert("Empty Staffs Data!");
+        }
+
+        console.log(staffs);
+
+        const body = {
+            staffs,
+        };
+        try {
+                // api call
+            let res = await fetch(BASE_API_URL+"/configurations/ tstaff", {
+                method: 'POST',
+                headers: {'Content-Type': 'json/application'},
+                body: JSON.stringify(body),
+            });
+
+            res = await res.json();
+            console.log(res);
+        } catch (error) {
+            console.log("Can't connect to server!");
+            console.warn(error);
+        }
+        
     }
 
     const [popup, setPopup] = useState(false);
@@ -99,18 +140,18 @@ const TstaffForm = () => {
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Branch</th>
-                        <th>Post</th>
-                        <th>Shift</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Specialization</th>
                         <th></th>
                     </tr>
                     {staffs.map((staff,index) => (
                         <tr>
                             <td>{staff.firstName}</td>
                             <td>{staff.lastName}</td>
-                            <td>{staff.branch}</td>
-                            <td>{staff.post}</td>
-                            <td>{staff.shiftNumber==1? "first shift":"second shift"}</td>
+                            <td>{staff.department}</td>
+                            <td>{staff.designation}</td>
+                            <td>{staff.specialization}</td>
                             <td className="text-center">
                                 <button className="text-blue-400 p-1 text-sm rounded-lg font-bold"
                                     onClick={(e) => {
@@ -124,32 +165,6 @@ const TstaffForm = () => {
                     ))}
                 </table>
             )}
-            <div className="w-full flex items-center gap-4 justify-between">
-                <InputField
-                    label="Branch"
-                    value={branch}
-                    setValue={setBranch}
-                />
-                <span className="flex flex-col gap-2 w-full">
-                    <label className="text-sm font-semibold">Shift Number</label>
-                    <span className="px-2 py-1 flex gap-2 items-center">
-                        <input 
-                            type="radio" name="shift"
-                            value={1}
-                            onClick={(e) => setShift(e.target.value)}
-                        /> 
-                        <label className="mr-2">First Shift</label>
-                        <input
-                            type="radio" name="shift"
-                            value={2}
-                            onClick={(e) => setShift(e.target.value)}
-                        /> 
-                        <label>Second Shift</label>
-                    </span>
-                </span>
-                <dummy className="w-full"></dummy>
-            </div>
-
             <div className="w-full flex items-center gap-4 justify-between">
                 <InputField
                     label="First Name"
@@ -167,106 +182,143 @@ const TstaffForm = () => {
                     setValue={setLast}
                 />
             </div>
-                <div className="w-full flex items-center gap-4 justify-between">
+            <div className="w-full flex items-center gap-4 justify-between">
                 <InputField
-                    label="Post"
-                    value={post}
-                    setValue={setPost}
+                    label="Designation"
+                    value={designation}
+                    setValue={setDesignation}
                 />
+                <InputField
+                    label="Department"
+                    value={department}
+                    setValue={setDepartment}    
+                />
+                <InputField
+                    label="Subject Specialization"
+                    value={specialization}
+                    setValue={setSpecialization}
+                />
+            </div>
+            <div className="w-full flex items-center gap-4 justify-between">
+            {/* <InputField 
+                    label=" Highest Qualification"
+                    value={qualification}
+                    setValue={setQualification}
+            /> */}
+            <SelectField
+                label="Highest Qualification"
+                selectLabel="select qualification"
+                options={['Ph.D', 'M.Tech.', 'M.Arch.', 'M.Pharm.', 'M.A.', 'M.Sc.', 'B.Lib', 'M.Lib.', 'B.Arch', 'Other']}
+                setOption={setQualification}
+                currentOption={qualification}
+             />
+            <InputField 
+                    label="Date of acquiring Highest Qualification"
+                    value={doq}
+                    setValue={setDoq}
+                    type="date"
+                />
+                <dummy className="w-full"></dummy>
+            </div>
+            <div className="w-full flex items-center gap-4 justify-between">
+                <InputField 
+                        label="Date of Birth"
+                        value={dob}
+                        setValue={setDob}
+                        type="date"
+                    />
+                <SelectField
+                    label="Category"
+                    selectLabel="Select Category"
+                    options={['General', 'OBC', 'SC', 'ST', 'Other']}
+                    setOption={setCategory}
+                    currentOption={category}
+                />
+                <dummy className="w-full"></dummy>
+            </div>
+            <div className="w-full flex items-center gap-4 justify-between">
+                <SelectField
+                    label="Type of Appointment"
+                    selectLabel="Select Type of Appointment"
+                    options={['University Approved (Regular)', 'University Approved (Ad-hoc)', 'Local Appointment (Full Time)', 'Local Appointment (Part Time)', 'Local Appointment (Visiting)']}
+                    setOption={setTypeOfAppoint}
+                    currentOption={typeOfAppoint}
+                />
+                {typeOfAppoint.includes("University Approved") ?
+                    (<InputField
+                        label="DBATU Approval Letter Number"
+                        value={approvalNo}
+                        setValue={setApprovalno}
+                    />) : <dummy className="w-full"></dummy>
+                }
+                {typeOfAppoint.includes("University Approved") ?
+                    (<InputField 
+                        label="Date of Approval by DBATU"
+                        value={doa}
+                        setValue={setDoa}
+                        type="date"
+                    />) : <dummy className="w-full"></dummy>
+                }
+            </div>
+            <div className="w-full flex items-center gap-4 justify-between">
                 <span className="flex flex-col gap-2 w-full">
-                    <label className="text-sm font-semibold">Appointed from reserved category</label>
-                    <span className="px-2 py-1 flex gap-2 items-center">
+                        <label className="text-sm font-semibold">Whether the current designation is under CAS?</label>
+                        <span
+                            className="px-2 py-1 flex gap-2 items-center"
+                        >
+                            <input 
+                                type="radio" name="approved"
+                                onClick={(e) => setCas(true)}
+                            /> 
+                            <label className="mr-2">Yes</label>
+                            <input
+                                type="radio" name="approved"
+                                onClick={(e) => setCas(false)}
+                            /> 
+                            <label>No</label>
+                        </span>
+                    </span>
+                <dummy className="w-full"></dummy>
+                <dummy className="w-full"></dummy>
+            </div>
+            <div className="w-full flex items-center gap-4 justify-between">
+                <span className="flex flex-col gap-2 w-full">
+                    <label className="text-sm font-semibold">Was the Approval transferred from other University</label>
+                    <span
+                        className="px-2 py-1 flex gap-2 items-center"
+                    >
                         <input 
-                            type="radio" name="isAppointed"
-                            onClick={(e) => setIsAppointed(true)}
+                            type="radio" name="otherUni"
+                            onClick={(e) => setOtherUni(true)}
                         /> 
                         <label className="mr-2">Yes</label>
                         <input
-                            type="radio" name="isAppointed"
-                            onClick={(e) => setIsAppointed(false)}
+                            type="radio" name="otherUni"
+                            onClick={(e) => setOtherUni(false)}
                         /> 
                         <label>No</label>
                     </span>
                 </span>
-                <InputField 
-                    label="Date of Appointment or Joining"
-                    value={doj}
-                    setValue={setDoj}
-                    type="date"
-                />
-            </div>
-            <div className="w-full flex items-center gap-4 justify-between">
-                <span className="flex flex-col gap-2 w-full">
-                    <label className="text-sm font-semibold">Choose Type of Faculty</label>
-                    <span className="px-2 py-1 flex gap-2 items-center">
-                        <input 
-                            type="radio" name="typef"
-                            onClick={(e) => setTypef("Full-Time")}
-                        /> 
-                        <label className="mr-2">Full-Time</label>
-                        <input
-                            type="radio" name="typef"
-                            onClick={(e) => setTypef("Part-Time")}
-                        /> 
-                        <label>Part-Time</label>
-                        <input
-                            type="radio" name="typef"
-                            onClick={(e) => setTypef("Visiting")}
-                        /> 
-                        <label>Visiting</label>
-                        <input
-                            type="radio" name="typef"
-                            onClick={(e) => setTypef("C.H.B.")}
-                        /> 
-                        <label>C.H.B</label>
-                    </span>
-                </span>
+                {   otherUni ?
+                    (<InputField
+                        label="Date of Approval from Earlier University"
+                        value={isApprovedFrom}
+                        setValue={setApprovedFrom}
+                        type="date"
+                    />) : 
+                    (<dummy className="w-full"></dummy>)
+                }
                 <dummy className="w-full"></dummy>
-                <dummy className="w-full"></dummy>
-            </div>
-            <div className="w-full flex items-center gap-4 justify-between">
-                <span className="flex flex-col gap-2 w-full">
-                    <label className="text-sm font-semibold">Approved by the Institute</label>
-                    <span className="px-2 py-1 flex gap-2 items-center">
-                        <input 
-                            type="radio" name="isapproved"
-                            onClick={(e) => setIsApproved(true)}
-                        /> 
-                        <label className="mr-2">Yes</label>
-                        <input
-                            type="radio" name="isapproved"
-                            onClick={(e) => setIsApproved(false)}
-                        /> 
-                        <label>No</label>
-                    </span>
-                </span>
-                <InputField
-                    label="University Approval Letter number"
-                    value={approvalNo}
-                    setValue={setApprovalno}
-                />
-                <InputField 
-                    label="Date on Approval Letter"
-                    value={doa}
-                    setValue={setDoa}
-                    type="date"
-                />
             </div>
             <div className="w-full flex items-center gap-4 justify-between">
                 <InputField
-                    label="University Recognition Letter number"
-                    value={recognitionNo}
-                    setValue={setRecognitionNo}
-                />
-                <InputField 
-                    label="Date on Recognition Letter"
-                    value={dor}
-                    setValue={setDor}
-                    type="date"
+                    label="Total Experience"
+                    value={experience}
+                    setValue={setExperience}
                 />
                 <dummy className="w-full"></dummy>
+                <dummy className="w-full"></dummy>
             </div>
-
             <div>
                 <span className="flex items-left"><AddAnotherFieldBtn onClick={addTeachingStaffDetails}/></span>
             </div>
@@ -275,7 +327,6 @@ const TstaffForm = () => {
                 <button className="px-4 py-1 bg-blue-600 hover:bg-blue-800 text-white rounded-lg"
                     onClick={onSubmitHandler}
                 >Submit</button>
-                <button className="px-4 py-1 bg-blue-200 hover:bg-gray-400 rounded-lg">Save</button>
             </div>
         </form>
     )
@@ -314,12 +365,12 @@ const StaffDataPopup = ({staff, setPopup}) => {
                     <td>{staff.lastName}</td>
                 </tr>
                 <tr>
-                    <td>Branch</td>
-                    <td>{staff.branch}</td>
+                    <td>department</td>
+                    <td>{staff.department}</td>
                 </tr>
                 <tr>
-                    <td>Post</td>
-                    <td>{staff.post}</td>
+                    <td>Designation</td>
+                    <td>{staff.designation}</td>
                 </tr>
                 <tr>
                     <td>Shift</td>
