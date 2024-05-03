@@ -1,51 +1,73 @@
-import { Model } from "sequelize";
-import { Column, Table } from "sequelize-typescript";
+import { Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { User } from "src/modules/user/users/models/user.model";
 
 @Table({
     tableName:'faculties',
     paranoid:true
 })
 export class Faculty extends Model{
+
+    @IsUUID(4)
+    @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Column
+    id: string;
     
     @Column
-    branch:string
-
+    firstName: string;
+  
     @Column
-    shift :string
-
+    middleName: string;
+  
     @Column
-    first :string
-
+    lastName: string;
+  
     @Column
-    middle:string
-
+    department: string;
+  
     @Column
-    last:string
-
+    designation: string;
+  
     @Column
-    post:string
-
+    specialization: string;
+  
     @Column
-    doj:string
-
+    qualification: string;
+  
+    @Column(DataType.DATE)
+    dateOfQualification: Date;
+  
+    @Column(DataType.DATE)
+    dateOfBirth: Date;
+  
     @Column
-    typef:string
-
+    category: string;
+  
     @Column
-    isappointed:string
-
+    typeOfAppointment: string;
+  
+    @Column(DataType.BOOLEAN)
+    approvedByInstitute: boolean;
+  
     @Column
-    isApproved :string
-
+    approvalNo: string;
+  
+    @Column(DataType.BOOLEAN)
+    ApprovedbyCAS: boolean;
+  
+    @Column(DataType.DATE)
+    dateOfApproval: Date;
+  
+    @Column(DataType.BOOLEAN)
+    fromOtherUniversity: boolean;
+  
+    @Column(DataType.DATE)
+    dateofApprovalOfPrevious: Date;
+  
     @Column
-    approvalno :string
-
+    experience: string;
+  
+    @ForeignKey(()=>User)
     @Column
-    doa :string
-
-    @Column
-    recognitionno :string
-
-    @Column
-    dor:string
+    uid: string;
 }

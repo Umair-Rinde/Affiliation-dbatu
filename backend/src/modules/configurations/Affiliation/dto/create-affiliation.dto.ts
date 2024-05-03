@@ -10,7 +10,7 @@ export class AffiliationDto {
   @IsString()
   @IsNotEmpty()
   dateOfFirstAffiliation: string;
-
+ 
   @IsString()
   @IsNotEmpty()
   detailsOfLastAffiliation: string;

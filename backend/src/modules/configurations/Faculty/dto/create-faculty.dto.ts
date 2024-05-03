@@ -1,60 +1,73 @@
-import { IsString, IsNotEmpty } from "class-validator"
-
+import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsDateString } from "class-validator"
 export class CreateFacultyDto{
+    @IsString()
+    @IsNotEmpty()
+    firstName: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    middleName: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    lastName: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    department: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    designation: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    specialization: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    qualification: string;
+  
+    @IsDateString()
+    @IsNotEmpty()
+    dateOfQualification: string;
+  
+    @IsDateString()
+    @IsNotEmpty()
+    dateOfBirth: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    category: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    typeOfAppointment: string;
+  
+    @IsBoolean()
+    approvedByInstitute: boolean;
+  
+    @IsString()
+    approvalNo: string;
+  
+    @IsBoolean()
+    ApprovedbyCAS: boolean;
+  
+    @IsDateString()
+    dateOfApproval: string;
+  
+    @IsBoolean()
+    fromOtherUniversity: boolean;
+  
+    @IsDateString()
+    dateofApprovalOfPrevious: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    experience: string;
+  
+    @IsString()
+    @IsNotEmpty()
+    uid: string;
     
-    @IsString()
-    @IsNotEmpty()
-    branch:string
-
-    @IsString()
-    @IsNotEmpty()
-    shift :string
-
-    @IsString()
-    @IsNotEmpty()
-    first :string
-
-    @IsString()
-    @IsNotEmpty()
-    middle:string
-
-    @IsString()
-    @IsNotEmpty()
-    last:string
-
-    @IsString()
-    @IsNotEmpty()
-    post:string
-
-    @IsString()
-    @IsNotEmpty()
-    doj:string
-
-    @IsString()
-    @IsNotEmpty()
-    typef:string
-
-    @IsString()
-    @IsNotEmpty()
-    isappointed:string
-
-    @IsString()
-    @IsNotEmpty()
-    isApproved :string
-
-    @IsString()
-    @IsNotEmpty()
-    approvalno :string
-
-    @IsString()
-    @IsNotEmpty()
-    doa :string
-
-    @IsString()
-    @IsNotEmpty()
-    recognitionno :string
-
-    @IsString()
-    @IsNotEmpty()
-    dor:string
 }
