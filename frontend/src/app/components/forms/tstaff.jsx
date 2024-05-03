@@ -30,8 +30,6 @@ const TstaffForm = () => {
 
     const [cas, setCas] = useState('');
 
-    const [isApproved, setIsApproved] = useState('');
-
     const [otherUni, setOtherUni] = useState(null);
     const [isApprovedFrom, setApprovedFrom] = useState(null);
 
@@ -71,7 +69,6 @@ const TstaffForm = () => {
             dateOfBirth: dob,
             category,
             typeOfAppointment : typeOfAppoint,
-            approvedByInstitute: isApproved,
             approvalNo,
             ApprovedbyCAS: cas,
             dateOfApproval: doa,
@@ -93,7 +90,7 @@ const TstaffForm = () => {
     }
 
     function isValidData(){
-        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas && isApproved!=null && otherUni!=null && experience)){
+        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas && otherUni!=null && experience)){
             alert("Please fill complete staff data");
 
             return false;
@@ -345,6 +342,7 @@ const StaffDataPopup = ({staff, setPopup}) => {
         e.preventDefault();
         setPopup(false);
     }
+    const isApprovedByUni = staff.typeOfAppointment.includes('University Approved');
     return (
         <div className="fixed w-screen h-screen flex items-center justify-center top-0 left-0 z-10 bg-[#0000005d]">
             <container className="flex flex-col gap-2 items-end bg-white p-2 rounded-xl">
@@ -373,40 +371,58 @@ const StaffDataPopup = ({staff, setPopup}) => {
                     <td>{staff.designation}</td>
                 </tr>
                 <tr>
-                    <td>Shift</td>
-                    <td>{staff.shiftNumber==1 ? "First Shift": "Second Shift" }</td>
+                    <td>Specialization</td>
+                    <td>{staff.specialization}</td>
                 </tr>
                 <tr>
-                    <td>Reserved Category</td>
-                    <td>{staff.appointedFromReserved?"yes": "no"}</td>
+                    <td>Higest Qualification</td>
+                    <td>{staff.qualification}</td>
                 </tr>
                 <tr>
-                    <td>Date of Appointment</td>
-                    <td>{staff.dateOfAppointment}</td>
+                    <td>Date of Acquiring Highest Qualification</td>
+                    <td>{staff.dateOfQualification}</td>
                 </tr>
                 <tr>
-                    <td>Type of Faculty</td>
-                    <td>{staff.typeOfFaculty}</td>
+                    <td>Date of Birth</td>
+                    <td>{staff.dateOfBirth}</td>
                 </tr>
                 <tr>
-                    <td>Approved by Institute</td>
-                    <td>{staff.approvedByInstitute?"yes":"no"}</td>
-                </tr>   
-                <tr>
-                    <td>University Approval Letter Number</td>
-                    <td>{staff.approvalNo}</td>
+                    <td>Cast Category</td>
+                    <td>{staff.category}</td>
                 </tr>
                 <tr>
-                    <td>Date on Approval Letter</td>
-                    <td>{staff.dateOnApproval}</td>
+                    <td>Type of Appointment</td>
+                    <td>{staff.typeOfAppointment}</td>
+                </tr>
+                {isApprovedByUni &&
+                    <tr>
+                        <td>University Approval Letter Number</td>
+                        <td>{staff.approvalNo}</td>
+                    </tr>
+                }
+                {isApprovedByUni && 
+                    <tr>
+                        <td>Date on Approval Letter</td>
+                        <td>{staff.dateOnApproval}</td>
+                    </tr>
+                }
+                <tr>
+                    <td>Approved by CAS</td>
+                    <td>{staff.ApprovedbyCAS ? "Yes" : "No"}</td>
                 </tr>
                 <tr>
-                    <td>University Recognition Letter Number</td>
-                    <td>{staff.recognitionNo}</td>
+                    <td>Was the Approval transferred from other university</td>
+                    <td>{staff.fromOtherUniversity ? "Yes":"No"}</td>
                 </tr>
+                {staff.fromOtherUniversity &&
+                    <tr>
+                        <td>Date of Approval from earlier university</td>
+                        <td>{staff.dateofApprovalofPrevious}</td>
+                    </tr>
+                }
                 <tr>
-                    <td>Date on Recognition Letter</td>
-                    <td>{staff.dateOnRecognition}</td>
+                    <td>Total Experience</td>
+                    <td>{staff.experience}</td>
                 </tr>
             </table>
             </container>
