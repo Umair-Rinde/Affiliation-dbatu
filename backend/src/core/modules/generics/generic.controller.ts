@@ -27,6 +27,7 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
   updateObjDTO,
   notAllowedMethods = [],
 }: GenericControllerOptions) {
+  console.log("==========================>>>>",createObjDTO)
   class GenericClass {
     constructor(
       protected readonly service: ServiceInterface<

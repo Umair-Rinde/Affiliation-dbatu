@@ -13,7 +13,7 @@ import { configurationsModule } from './modules/configurations/configurations.mo
     DatabaseModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../src', 'public'),
-    }),
+    }), 
     ConfigModule.forRoot({ isGlobal: true }),
     // Globle Modules
     RequestParamsModule,

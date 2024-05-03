@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputField from "@/app/components/common/InputField";
 
 
-const BASE_API_URL = 'http://192.168.207.77:5000/api/v1';
+const BASE_API_URL = 'http://localhost:5000/api/v1';
 
 const RtiForm = () => {
     const [firstName, setFirstName] = useState('');
@@ -14,13 +14,13 @@ const RtiForm = () => {
     const [totalExperience, setTotalExperience] = useState('');
     const [qualification, setQualification] = useState('');
 
-    const [phone, setPhone] = useState('');
+    const [phoneNumber, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
     async function onSubmitHandler(e) {
         e.preventDefault();
         // Logic to handle submit
-        if(!firstName || !middleName || !lastName || !designation || !totalExperience || !qualification || !phone || !email){
+        if(!firstName || !middleName || !lastName || !designation || !totalExperience || !qualification || !phoneNumber || !email){
             alert("Incomplete details");
             return;
         }
@@ -32,14 +32,14 @@ const RtiForm = () => {
             designation,
             totalExperience,
             qualification,
-            phone: phoneNumber,
+            phoneNumber,
             email
         };
 
         // api call
         let res = await fetch(BASE_API_URL+"/configurations/rti", {
             method: 'POST',
-            headers: {'Content-Type': 'json/application'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body),
         });
 
@@ -87,7 +87,7 @@ const RtiForm = () => {
             <div className="w-full flex items-center gap-4 justify-between">
                 <InputField
                     label="Phone Number"
-                    value={phone}
+                    value={phoneNumber}
                     setValue={setPhone}
                     type="number"
                 />
