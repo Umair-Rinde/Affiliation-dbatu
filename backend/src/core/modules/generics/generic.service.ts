@@ -38,6 +38,7 @@ export function GenericService<
 
     //create an object in database
     async create<Model extends {} = any>(dto: CreateObjDTO): Promise<Model> {
+      console.log(dto)
       const data = await this.model.create(dto);
       return data;
     }

@@ -8,17 +8,17 @@ import { useRouter } from "next/navigation";
 const LoginPage = () => {
 
     const [option, setOption] = useState('Institute Login');
-    const options = ['Institute Login', 'LIC Login', 'Admin Login'];
+    const options = ['Institute', 'LIC', 'Admin'];
 
-    const [username, setUsername] = useState('');
+    const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
 
     const router = useRouter();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        if(!username){
-            alert("Please enter username");
+        if(!email){
+            alert("Please enter email");
             return;
         }
         if(!password){
@@ -27,37 +27,39 @@ const LoginPage = () => {
         }
 
         let requestBody = JSON.stringify({
-            username,
+            email,
             password,
-            loginOption: option,
         });
 
-        let res = await fetch(BASE_API_URL+"/configurations/login", {
-            method: 'POST',
-            body: requestBody,
-            headers: { 'Content-Type': 'application/json'}
-        });
-
-        // remove true when api successfully connected
-        if(true || res.success){
-            alert("logined successfully");
-            // saveloginData()
-            // push to faculty
-            router.push('/tstaff');
-        }else{
-            // remove push after successfull implementation of api
-            router.push('/');
-            // Instead show login failed message 
-            // alert("res.errorMessage")
-        }
+        try {
+            let res = await fetch(BASE_API_URL+"/user/auth/login", {
+                method: 'POST',
+                body: requestBody,
+                headers: { 'Content-Type': 'application/json'}
+            });
+    
+            res = await res.json();
+            console.log(res);
+            // remove true when api successfully connected
+            if(res.success){
+                let uid = res.data.user.id;
+                alert("logined successfully");
+                localStorage.setItem('uid', uid);
+                // push to teaching staffs page
+                router.push('/tstaff');
+            }else{
+                alert("Wrong password"); 
+            }
+        } catch (error) {
+            console.warn(error);
+        }   
     }
-
     return (
         <main className="flex flex-col w-screen min-h-screen">
             {/*<NavTitle pageTitle="Login Page" />*/}
             <section className="bg-[#EEEEEE1A] shadow-lg rounded-xl flex flex-col px-16 py-7 gap-7 items-center my-auto mx-auto">
                 <h2 className="text-2xl font-bold">Login</h2>
-                <span className="text-gray-600 text-sm">Enter your username & password</span>
+                <span className="text-gray-600 text-sm">Enter your email & password</span>
                 <div className="flex items-center gap-2">
                     {options.map((optn) => {
                         return (
@@ -73,9 +75,9 @@ const LoginPage = () => {
                 <div className="flex flex-col w-full gap-3 my-3">
                     <input
                         className="w-full rounded-lg border outline-none py-2 px-4"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setemail(e.target.value)}
                     />
                     <input
                         className="w-full rounded-lg border outline-none py-2 px-4"
