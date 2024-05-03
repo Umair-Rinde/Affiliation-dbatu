@@ -9,7 +9,7 @@ export class LoginUserDTO {
   @IsString()
   @IsNotEmpty()
   password: string;
-}
+} 
 
 export class ForgetPasswordDTO {
   @IsString()

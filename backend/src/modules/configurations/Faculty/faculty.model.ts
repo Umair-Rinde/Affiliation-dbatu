@@ -2,7 +2,7 @@ import { Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table
 import { User } from "src/modules/user/users/models/user.model";
 
 @Table({
-    tableName:'faculties',
+    tableName:'faculty',
     paranoid:true
 })
 export class Faculty extends Model{
@@ -34,11 +34,11 @@ export class Faculty extends Model{
     @Column
     qualification: string;
   
-    @Column(DataType.DATE)
-    dateOfQualification: Date;
+    @Column(DataType.STRING)
+    dateOfQualification: String;
   
-    @Column(DataType.DATE)
-    dateOfBirth: Date;
+    @Column(DataType.STRING)
+    dateOfBirth: String;
   
     @Column
     category: string;
@@ -55,19 +55,19 @@ export class Faculty extends Model{
     @Column(DataType.BOOLEAN)
     ApprovedbyCAS: boolean;
   
-    @Column(DataType.DATE)
-    dateOfApproval: Date;
+    @Column(DataType.STRING)
+    dateOfApproval: String;
   
     @Column(DataType.BOOLEAN)
     fromOtherUniversity: boolean;
   
-    @Column(DataType.DATE)
-    dateofApprovalOfPrevious: Date;
+    @Column(DataType.STRING)
+    dateofApprovalOfPrevious: String;
   
     @Column
     experience: string;
-  
+   
     @ForeignKey(()=>User)
-    @Column
+    @Column 
     uid: string;
 }

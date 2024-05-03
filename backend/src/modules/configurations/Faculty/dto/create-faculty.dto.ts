@@ -28,11 +28,11 @@ export class CreateFacultyDto{
     @IsNotEmpty()
     qualification: string;
   
-    @IsDateString()
+    @IsString()
     @IsNotEmpty()
     dateOfQualification: string;
   
-    @IsDateString()
+    @IsString()
     @IsNotEmpty()
     dateOfBirth: string;
   
@@ -53,13 +53,13 @@ export class CreateFacultyDto{
     @IsBoolean()
     ApprovedbyCAS: boolean;
   
-    @IsDateString()
+    @IsString()
     dateOfApproval: string;
   
     @IsBoolean()
     fromOtherUniversity: boolean;
   
-    @IsDateString()
+    @IsString()
     dateofApprovalOfPrevious: string;
   
     @IsString()

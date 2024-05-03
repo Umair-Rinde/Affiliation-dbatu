@@ -4,6 +4,7 @@ import { HeadOfInstitutionModule } from './Head_of_Institution/headOfInstitution
 import { RTIModule } from './RTI/rti.module';
 import { AffiliationModule } from './Affiliation/affiliation.module';
 import { FacultyModule } from './Faculty/faculty.module';
+import { UniversityModule } from './university/university.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { FacultyModule } from './Faculty/faculty.module';
     HeadOfInstitutionModule,
     RTIModule,
     AffiliationModule,
-    FacultyModule
+    FacultyModule,
+    UniversityModule
   ],
   controllers: [],
   providers: [],

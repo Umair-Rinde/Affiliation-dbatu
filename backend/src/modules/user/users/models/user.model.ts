@@ -98,6 +98,6 @@ export class User extends Model<User> {
   })
   role: string;
 
-  @HasMany(()=>Faculty)
-  faculty:Faculty
+  // @HasMany(()=>Faculty)
+  // faculty:Faculty[]
 }

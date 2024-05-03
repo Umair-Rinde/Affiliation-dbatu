@@ -9,9 +9,11 @@ export class FacultyService extends GenericService<Faculty, CreateFacultyDto, Up
         @InjectModel(Faculty) private faculty: typeof Faculty,
         private reqparams: RequestParamsService
     ) {
-        super(faculty, reqparams);
+        super(faculty, reqparams); 
     }
     async createFaculties(facultyDataArray: any[]): Promise<Faculty[]> {
+        console.log('Received faculty data for bulk creation:', facultyDataArray);
+
         try {
           console.log('Received faculty data for bulk creation:', facultyDataArray);
           const faculties = await this.faculty.bulkCreate(facultyDataArray);
