@@ -18,7 +18,7 @@ const FacilitiesPageOne = () => {
                 {title:"Institute Login",path:"/login"},
                 {title:"Home", path:"/"},
                 {title:"Facilities", path:"/facilities"},
-                {title:"Part 1", path:"/facilities/one"}
+                {title:"Part 1", path:"/facilities/one"},
             ]} 
         />
           <section className="w-full h-full px-2 py-10">

@@ -3,7 +3,8 @@ import Header from "@/app/components/common/Header";
 import NavRoute from "@/app/components/common/NavRoute";
 // import NavTitle from "@/app/components/common/NavTitle";
 import SideNavbar from "@/app/components/common/SideNavbar";
-import FacilitiesFormOne from "@/app/components/forms/FacillitiesFormOne";
+import FacilitiesFormTwo from "@/app/components/forms/FacilitiesFormTwo";
+
 
 const FacilitiesPageTwo = () => {
   return (
@@ -25,7 +26,7 @@ const FacilitiesPageTwo = () => {
             <div className="w-full h-full flex-col gap-3 p-3 border border-blue-500">
               <h2 className="font-semibold text-2xl mx-1 w-full border-b pb-2">Facillities (Part 2)</h2>
               <DividerX />
-              <FacilitiesFormOne />
+              <FacilitiesFormTwo />
             </div>
           </section>
         </page>

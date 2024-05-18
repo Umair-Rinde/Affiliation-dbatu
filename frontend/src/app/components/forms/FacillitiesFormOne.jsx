@@ -314,7 +314,7 @@ const FacilitiesFormOne = () => {
                     <dummy className="w-full"></dummy>
                     <dummy className="w-full"></dummy>
                 </div>
-                <AddAnotherFieldBtn onClick={addInternetDetails} />
+                <AddAnotherFieldBtn onClick={addWifiDetails} />
             </section>
             <section className="flex flex-col gap-5 w-full border-b-2 py-5">
                 <h4 className="text-lg font-semibold">Instructional Area (Carpet Area)</h4>

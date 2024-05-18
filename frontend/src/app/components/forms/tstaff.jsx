@@ -29,11 +29,6 @@ const TstaffForm = () => {
 
     const [cas, setCas] = useState(null);
 
-<<<<<<< HEAD
-=======
-    const [isApproved, setIsApproved] = useState(null);
-
->>>>>>> 681b75b0e9f0ca8a1f39bd8c65f8336c30a684fe
     const [otherUni, setOtherUni] = useState(null);
     const [isApprovedFrom, setApprovedFrom] = useState('');
 
@@ -105,36 +100,9 @@ const TstaffForm = () => {
     }
 
     function isValidData(){
-<<<<<<< HEAD
         if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas && otherUni!=null && experience)){
             alert("Please fill complete staff data");
 
-=======
-        if(!(department && first && last && designation && department && specialization && qualification && doq && dob && category && typeOfAppoint && cas!=null && otherUni!=null && experience!=null)){
-            let str = "";
-            if(!(first && middle && last))
-                str = "Please enter complete name";
-            else if(!department) str = "Please enter department";
-            else if(!designation) str = "Please enter designatiion";
-            else if(!specialization) str = "Please enter specialization";
-            else if(!qualification) str = "Please select highest qualification";
-            else if(!doq) str = "Please enter date of acquiring higher qualification";
-            else if(!dob) str = "Please enter date of birth";
-            else if(!category) str = "Please select cast category";
-            else if(!typeOfAppoint) str = "Please select type of appointment";
-            else if(otherUni === null) str = "Please select if approval transferred from other university";
-            else if(cas===null) str = "Please select if current designaition is under CAS"
-            else if(!experience) str="Please enter experience";
-            alert(str);
-            return false;
-        }
-        if(typeOfAppoint.includes('University Approved') && !(approvalNo || doa)){
-            alert("Please fill complete approval details!");
-            return false;
-        }
-        if(otherUni && !isApprovedFrom){
-            alert("Please fill the date of approval from other university!");
->>>>>>> 681b75b0e9f0ca8a1f39bd8c65f8336c30a684fe
             return false;
         }
         return true;
