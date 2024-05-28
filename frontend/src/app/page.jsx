@@ -14,7 +14,6 @@ const Home = () => {
   }, []);
   return (
     <main className="flex w-screen min-h-screen flex-col items-center">
-      {/*<NavTitle pageTitle="Home"/>*/}
       <Header />
       <div className="flex w-full py-2">
         <SideNavbar current="Home" />
