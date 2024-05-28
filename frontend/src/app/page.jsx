@@ -1,11 +1,17 @@
-
+'use client';
 import Footer from "@/app/components/common/Footer";
 import Header from "@/app/components/common/Header";
 import NavRoute from "@/app/components/common/NavRoute";
 import SideNavbar from "@/app/components/common/SideNavbar";
 import AllForms from "@/app/components/home/AllForms";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/login');
+  }, []);
   return (
     <main className="flex w-screen min-h-screen flex-col items-center">
       {/*<NavTitle pageTitle="Home"/>*/}

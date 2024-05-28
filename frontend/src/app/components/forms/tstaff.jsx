@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import InputField from "@/app/components/common/InputField";
 import SelectField from "../common/SelectField";
 
-const BASE_API_URL = 'http://192.168.207.77:5000/api/v1';
+const BASE_API_URL = 'http://localhost:5000/api/v1/';
 
 const TstaffForm = () => {
 
@@ -146,9 +146,9 @@ const TstaffForm = () => {
         };
         try {
                 // api call
-            let res = await fetch(BASE_API_URL+"/configurations/ tstaff", {
+            let res = await fetch(BASE_API_URL+"configurations/faculty", {
                 method: 'POST',
-                headers: {'Content-Type': 'json/application'},
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(body),
             });
 

@@ -5,7 +5,7 @@ import { RTIService } from './rti.service';
 import { RTIDto } from './dto/create-rti.dto';
 import { UpdateRTIDto } from './dto/update-rti.dto';
 
-@Controller('rti')
+@Controller('configurations/rti')
 export class RTIController extends GenericController<
   RTI,
   RTIDto,

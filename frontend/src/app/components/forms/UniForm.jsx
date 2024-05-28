@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import InputField from "../common/InputField";
+import { BASE_API_URL } from "@/configs/api";
 
 const UniForm = () => {
     const [name, setName] = useState('');
@@ -18,9 +19,27 @@ const UniForm = () => {
     const [aicte, setAicte] = useState('');
     const [dte, setDte] = useState('');
 
-    function onSubmitHandler(e) {
+    async function onSubmitHandler(e) {
         e.preventDefault();
-        // Logic to handle submit
+        const body ={
+            name,
+            address,
+            taluka,
+            district,
+            pin,
+            phone,
+            fax,
+            unicode,
+            aicte,
+            dte
+        }
+        let res = await fetch(BASE_API_URL+"/configurations/university",{
+            method:'Post',
+            headers:{'content-Type':'application/json'},
+            body:JSON.stringify(body)
+        })
+        res =await res.json();
+        console.log(res);
     }
 
     return (

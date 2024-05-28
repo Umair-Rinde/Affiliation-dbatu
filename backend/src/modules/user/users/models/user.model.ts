@@ -7,8 +7,10 @@ import {
   Default,
   Model,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript';
 import { RoleEnum } from '../../interface';
+import { Faculty } from 'src/modules/configurations/Faculty/faculty.model';
 
 @Table({
   tableName: 'users',
@@ -96,5 +98,6 @@ export class User extends Model<User> {
   })
   role: string;
 
-  
+  // @HasMany(()=>Faculty)
+  // faculty:Faculty[]
 }
