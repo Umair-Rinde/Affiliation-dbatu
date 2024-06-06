@@ -15,17 +15,7 @@ const LoginPage = () => {
 
     const router = useRouter();
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        if(!email){
-            alert("Please enter email");
-            return;
-        }
-        if(!password){
-            alert("Please enter password");
-            return;
-        }
-
+    async function adminLogin(){
         let requestBody = JSON.stringify({
             email,
             password,
@@ -45,14 +35,66 @@ const LoginPage = () => {
                 let uid = res.data.user.id;
                 alert("logined successfully");
                 localStorage.setItem('uid', uid);
+                localStorage.setItem('role', 'admin');
+                // push to admin page
+                router.push('/admin');
+            }else{
+                alert("Wrong password"); 
+            }
+        } catch (error) {
+            console.warn(error);
+        }  
+    }
+
+    async function instituteLogin(){
+        let requestBody = JSON.stringify({
+            email,
+            password,
+        });
+
+        try {
+            let res = await fetch(BASE_API_URL+"/user/auth/login", {
+                method: 'POST',
+                body: requestBody,
+                headers: { 'Content-Type': 'application/json'}
+            });
+    
+            res = await res.json();
+            console.log(res);
+            // remove true when api successfully connected
+            if(res.success){
+                let uid = res.data.user.id;
+                alert("logined successfully");
+                localStorage.setItem('uid', uid);
+                localStorage.setItem('role', 'university');
                 // push to teaching staffs page
-                router.push('/tstaff');
+                router.push('/');
             }else{
                 alert("Wrong password"); 
             }
         } catch (error) {
             console.warn(error);
         }   
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        if(!email){
+            alert("Please enter email");
+            return;
+        }
+        if(!password){
+            alert("Please enter password");
+            return;
+        }
+
+        if(option == 'Institute'){
+            instituteLogin();
+        }else if(option == 'Admin'){
+            adminLogin();
+        }else{
+            // LIC Login
+        }
     }
     return (
         <main className="flex flex-col w-screen min-h-screen">

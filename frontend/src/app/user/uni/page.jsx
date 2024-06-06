@@ -3,7 +3,7 @@ import Header from "@/app/components/common/Header";
 import NavRoute from "@/app/components/common/NavRoute";
 import NavTitle from "@/app/components/common/NavTitle";
 import SideNavbar from "@/app/components/common/SideNavbar";
-import UniForm from "../components/forms/UniForm";
+import UniForm from "../../components/forms/UniForm";
 
 const UniPage = () => {
     return (
